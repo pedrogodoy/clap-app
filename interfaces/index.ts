@@ -8,3 +8,12 @@ export type User = {
   id: number
   name: string
 }
+
+export interface IArticle {
+  title: string,
+  text: string
+}
+
+export interface IClaps {
+  claps: number;
+}

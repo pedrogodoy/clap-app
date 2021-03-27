@@ -8,7 +8,6 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
       },
       method: 'GET'
     })
-    console.log(resApi);
     
     const result = await resApi.json()
     res.status(200).json(result);

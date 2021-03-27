@@ -1,14 +1,12 @@
-import Link from 'next/link'
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Layout from '../components/Layout'
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { debounce } from 'lodash';
 import { useDebounce } from 'use-lodash-debounce';
 
 
 export default function IndexPage({ claps }: any) {
-  const [clapData, setClapData] = React.useState(claps.clap.claps || undefined);
+  const [clapData, setClapData] = React.useState(claps.clap.claps || 0);
   const [showCounter, setShowCounter] = React.useState('none');
   const debouncedValue = useDebounce(clapData, 1000);
 

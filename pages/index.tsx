@@ -14,7 +14,7 @@ export default function IndexPage({
   const [clapData, setClapData] = React.useState(claps);
   const [showCounter, setShowCounter] = React.useState('hidden');
   const [animate, setAnimate] = React.useState(false);
-  const debouncedValue = UseDebounce(clapData.claps, 1000);
+  const debouncedValue = UseDebounce(clapData.claps, 2000);
 
   useEffect(() => {
     makeRequest();
@@ -33,6 +33,8 @@ export default function IndexPage({
 
   const makeRequest = async () => {
     try {
+      console.log('chamou');
+
       const res = await fetch('http://localhost:3333/articles/claps', {
         body: JSON.stringify({
           claps: clapData?.claps

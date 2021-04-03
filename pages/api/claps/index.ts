@@ -1,8 +1,14 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
+//url for localhost dev
+const API_URL = 'http://localhost:3333';
+
+//url for docker
+// const API_URL = 'http://172.17.0.3:3333';
+
 const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const resApi = await fetch('http://localhost:3333/articles/claps', {
+    const resApi = await fetch(`${API_URL}/articles/claps`, {
       headers: {
         'Content-Type': 'application/json'
       },

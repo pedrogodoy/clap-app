@@ -9,6 +9,7 @@ import UseDebounce from '../components/UseDebounce';
 import { pulse, fadeIn } from 'react-animations';
 import Radium, {StyleRoot} from 'radium';
 
+
 export default function IndexPage({ 
   claps }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [clapData, setClapData] = React.useState(claps);
@@ -33,20 +34,22 @@ export default function IndexPage({
 
   const makeRequest = async () => {
     try {
-      console.log('chamou');
-
-      const res = await fetch('http://localhost:3333/articles/claps', {
-        body: JSON.stringify({
-          claps: clapData?.claps
-        }),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        method: 'POST'
-      })
-  
-      const result = await res.json()
-      setShowCounter('hidden');
+      console.log('chamou: ', clapData);
+      if(clapData) {
+        const res = await fetch('http://localhost:3333/articles/claps', {
+          body: JSON.stringify({
+            claps: clapData?.claps
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST'
+        })
+    
+        const result = await res.json()
+        setShowCounter('hidden');
+      }
+      
     } catch(err) {
       toast.notify('Não foi possível realizar a requisição!', {
         duration: 5,

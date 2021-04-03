@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import Layout from '../components/Layout'
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
@@ -6,31 +6,32 @@ import { useDebounce } from 'use-lodash-debounce';
 import { toast, ToastContainer } from 'react-nextjs-toast';
 import { IClaps } from '../types';
 import { InferGetServerSidePropsType } from 'next';
-
+import UseDebounce from '../components/UseDebounce';
 
 
 export default function IndexPage({ 
   claps }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [clapData, setClapData] = React.useState(claps);
   const [showCounter, setShowCounter] = React.useState('none');
-  // const debouncedValue = useDebounce(clapData.claps, 1000);
+  const debouncedValue = UseDebounce(clapData.claps, 1000);
 
-  // useEffect(() => {
-  //   makeRequest();
+  useEffect(() => {
+    makeRequest();
     
-  // }, [debouncedValue])
+  }, [debouncedValue])
 
   const handleClaps = async () => {
     if(clapData.claps < 50) {
       setClapData({...clapData, claps: clapData.claps + 1 });
       setShowCounter('flex');
-      makeRequest();
     }
   };
 
 
   const makeRequest = async () => {
     try {
+      console.log('chamou');
+
       const res = await fetch('http://localhost:3333/articles/claps', {
         body: JSON.stringify({
           claps: clapData?.claps

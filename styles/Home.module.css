@@ -123,7 +123,8 @@
 
 .clapCounter {
   padding: 15px;
-  background: rgb(161, 159, 159);
+  background: #2A292A;
+  opacity: 0.6;
   height: 20px;
   width: 20px;
   color: #FFF;

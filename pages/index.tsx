@@ -34,7 +34,7 @@ export default function IndexPage({
 
   const makeRequest = async () => {
     try {
-      console.log('chamou: ', clapData);
+      console.log('send: ', clapData);
       if(clapData) {
         const res = await fetch('http://localhost:3333/articles/claps', {
           body: JSON.stringify({
@@ -103,4 +103,5 @@ export async function getServerSideProps() {
       claps
     }
   };
+ 
 }
